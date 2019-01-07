@@ -24,7 +24,7 @@ const uint64_t pipe = 0xE14BC8F482LL;
 
 //Define os pinos dos botoes
 int pino_botao1 = 7;
-int pino_botao2 = 2;
+//int pino_botao2 = 2;
 
 void setup()
 {
@@ -32,8 +32,8 @@ void setup()
   //ativa pull-up
   pinMode(7, INPUT);
   digitalWrite(7,HIGH);
-  pinMode(2, INPUT);
-  digitalWrite(2,HIGH);
+//  pinMode(2, INPUT);
+//  digitalWrite(2,HIGH);
 
   //Inicializa a serial
   Serial.begin(57600);
@@ -57,7 +57,7 @@ void loop()
 {
   hcsr04();     // FAZ A CHAMADA DO MÉTODO "hcsr04()"
 
-if(distancia <= 30){        // SE A DISTÂNCIA ENTRE O OBJETO E O SENSOR ULTRASONICO FOR MENOR     //QUE 30CM, FAZ
+if(distancia <= 15){        // SE A DISTÂNCIA ENTRE O OBJETO E O SENSOR ULTRASONICO FOR MENOR     //QUE 30CM, FAZ
 tone(pino_botao1,1500);      //ACIONA O PINO 7 Tx SINAL PARA O Rx
 //tone ((PORTB = PORTB & B00100000),1500); DESLIGAVA O CCTO
 }else{                      //SENÃO, FAZ
@@ -65,6 +65,7 @@ noTone(pino_botao1);         //BUZZER PERMANECE DESLIGADO
 }
   //Envia o numero 1 caso o botao1 seja pressionado
   if (digitalRead(pino_botao1) == LOW)
+  //if(distancia <= 30)
   {
     Serial.println("Botao 1 pressionado !");
     dados[0] = 1;
@@ -72,12 +73,12 @@ noTone(pino_botao1);         //BUZZER PERMANECE DESLIGADO
   }
   
   //Envia o numero 2 caso o botao2 seja pressionado
-  if (digitalRead(pino_botao2) == LOW)
-  {
-    Serial.println("Botao 2 pressionado !");
-    dados[0] = 2;
-    radio.write(dados, 1);
-  }
+//  if (digitalRead(pino_botao2) == LOW)
+  //{
+    //Serial.println("Botao 2 pressionado !");
+    //dados[0] = 2;
+  //  radio.write(dados, 1);
+  //}
  }
  void hcsr04(){
 //digitalWrite(trigPin, LOW);     //SETA O PINO 6 COM UM PULSO BAIXO "LOW"
